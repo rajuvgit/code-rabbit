@@ -1,0 +1,28 @@
+# .coderabbit.yaml
+review:
+  # Automatically review pull requests when opened or updated
+  auto_review: true
+ 
+  # Limit reviews only to these branches (e.g., skip feature branches)
+  target_branches: ["main", "master", "develop"]
+ 
+  # Block the PR on these issues if found (optional)
+  block_on: ["security", "logic"]
+ 
+  # Focus the review on specific instructions (e.g., for IaC security)
+  instructions: "Ensure all new AWS IAM policies follow the principle of least privilege. Check for 'Allow' actions on '*' resources."
+ 
+  # Ignore generated files (good for Terraform/Terragrunt)
+  path_filters:
+    - "! **/*.tfstate"
+    - "! **/*.tfvars"
+ 
+ 
+# Provide explicit instructions for the AI reviewer
+review:
+  instructions: |
+    For all Terraform/Terragrunt (.tf, .hcl) files:
+    1. Ensure all resource arguments are aligned and indented using spaces, adhering to standard HCL formatting conventions.
+    2. Check for unused variables or outputs.
+    3. Verify that sensitive values are not hardcoded (e.g., access keys).
+    4. Ensure the use of multi-line arguments is consistent and readable.
