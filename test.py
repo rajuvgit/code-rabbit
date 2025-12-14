@@ -1,1 +1,1 @@
-prin("I'm Raj......")
+print("I'm Raj......")
